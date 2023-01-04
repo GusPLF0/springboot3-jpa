@@ -1,19 +1,36 @@
 package com.gusdev.demo.controllers;
 
 import com.gusdev.demo.models.User;
+import com.gusdev.demo.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
 
-    @GetMapping
-    public ResponseEntity<User> findAll(){
-        User u = new User();
+    private UserService service;
 
-        return ResponseEntity.ok().body(u);
+    @Autowired
+    public UserController(UserService service) {
+        this.service = service;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<User>> findAll() {
+
+        List<User> list = service.findAll();
+
+        return ResponseEntity.ok().body(list);
+    }
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<User> findById(@PathVariable Long id){
+        return ResponseEntity.ok().body(service.findById(id));
     }
 }
