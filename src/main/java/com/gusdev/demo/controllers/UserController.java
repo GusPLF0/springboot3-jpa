@@ -24,7 +24,6 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<User>> findAll() {
-
         List<User> list = service.findAll();
 
         return ResponseEntity.ok().body(list);
