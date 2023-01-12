@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/categories")
+@RequestMapping(value = "/products")
 public class ProductController {
 
     private ProductService service;
