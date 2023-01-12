@@ -1,7 +1,7 @@
 package com.gusdev.demo.controllers;
 
-import com.gusdev.demo.models.Category;
-import com.gusdev.demo.services.CategoryService;
+import com.gusdev.demo.models.Product;
+import com.gusdev.demo.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,25 +13,25 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/categories")
-public class CategoryController {
+public class ProductController {
 
-    private CategoryService service;
+    private ProductService service;
 
 
     @Autowired
-    public CategoryController(CategoryService service) {
+    public ProductController(ProductService service) {
         this.service = service;
     }
 
     @GetMapping
-    public ResponseEntity<List<Category>> findAll() {
-        List<Category> list = service.findAll();
+    public ResponseEntity<List<Product>> findAll() {
+        List<Product> list = service.findAll();
 
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Category> findById(@PathVariable Long id) {
+    public ResponseEntity<Product> findById(@PathVariable Long id) {
         return ResponseEntity.ok().body(service.findById(id));
     }
 
